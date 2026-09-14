@@ -14,6 +14,11 @@ val appVersionCode = 19
 // 与正式版（top.wkbin.taixu）及本地调试包（top.wkbin.taixu.debug）完全共存互不干扰。
 val taiXuDevBuild = System.getenv("TAIXU_DEV_BUILD") == "1"
 
+// Aharou 专属版构建开关：CI（.github/workflows/aharou-build.yml）或本地设 AHAROU_BUILD=1 时，
+// 产出独立包 com.aharou.app / 应用名 Aharou / 专属图标 / 版本后缀 -aharou，
+// 与正式版（top.wkbin.taixu）、TaiXuDev（top.wkbin.taixu.dev）完全共存互不干扰。
+val aharouBuild = System.getenv("AHAROU_BUILD") == "1"
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.serialization)
@@ -30,13 +35,24 @@ extensions.configure<ApplicationExtension> {
     ndkVersion = "30.0.15729638"
 
     defaultConfig {
-        applicationId = if (taiXuDevBuild) "top.wkbin.taixu.dev" else "top.wkbin.taixu"
+        applicationId = when {
+            aharouBuild -> "com.aharou.app"
+            taiXuDevBuild -> "top.wkbin.taixu.dev"
+            else -> "top.wkbin.taixu"
+        }
         minSdk = 29
         targetSdk = 37
         versionCode = appVersionCode
         versionName = appVersionName
-        // 应用名统一走 manifest placeholder：TaiXuDev 构建显示 "TaiXuDev"，其余显示 "太墟"。
-        manifestPlaceholders["appLabel"] = if (taiXuDevBuild) "TaiXuDev" else "太墟"
+        // 应用名统一走 manifest placeholder：Aharou 显示 "Aharou"，TaiXuDev 显示 "TaiXuDev"，其余显示 "太墟"。
+        manifestPlaceholders["appLabel"] = when {
+            aharouBuild -> "Aharou"
+            taiXuDevBuild -> "TaiXuDev"
+            else -> "太墟"
+        }
+        // 启动图标同样走 placeholder：Aharou 专属版使用自己的图标资源。
+        manifestPlaceholders["appIcon"] =
+            if (aharouBuild) "@drawable/aharou_logo" else "@drawable/taixu_logo"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters += "arm64-v8a"
@@ -95,13 +111,23 @@ extensions.configure<ApplicationExtension> {
             // TaiXuDev 双包构建：包名与应用名已在 defaultConfig 按 taiXuDevBuild 分流，
             // 此处只控制后缀——本地调试包保持 top.wkbin.taixu.debug/-debug，
             // TaiXuDev 预览包（top.wkbin.taixu.dev）不再叠加额外后缀，版本后缀为 -dev。
-            if (!taiXuDevBuild) {
+            if (!taiXuDevBuild && !aharouBuild) {
                 applicationIdSuffix = ".debug"
             }
-            versionNameSuffix = if (taiXuDevBuild) "-dev" else "-debug"
+            versionNameSuffix = when {
+                aharouBuild -> "-aharou"
+                taiXuDevBuild -> "-dev"
+                else -> "-debug"
+            }
         }
         release {
-            manifestPlaceholders["appLabel"] = if (taiXuDevBuild) "TaiXuDev" else "太墟"
+            manifestPlaceholders["appLabel"] = when {
+                aharouBuild -> "Aharou"
+                taiXuDevBuild -> "TaiXuDev"
+                else -> "太墟"
+            }
+            manifestPlaceholders["appIcon"] =
+                if (aharouBuild) "@drawable/aharou_logo" else "@drawable/taixu_logo"
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
