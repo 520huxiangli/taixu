@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="chat_command_workflow">运行工作流</string>
-    <string name="chat_command_workflow_description">使用 /wf &lt;工作流 ID&gt; 调用太墟工作流</string>
+    <string name="chat_command_workflow_description">使用 /wf &lt;工作流 ID&gt; 调用 Aharou 工作流</string>
     <string name="chat_web_image">网络图片</string>
     <string name="chat_web_content">网络内容</string>
     <string name="chat_open_link_failed">无法打开该链接</string>
@@ -11,7 +11,7 @@
     <string name="chat_receiving_image">正在接收图片…</string>
     <string name="chat_image_preview">图片预览</string>
     <string name="chat_save_image">保存图片</string>
-    <string name="chat_image_saved">已保存到相册（Pictures/TaiXu）</string>
+    <string name="chat_image_saved">已保存到相册（Pictures/Aharou）</string>
     <string name="chat_image_save_failed">图片保存失败</string>
     <string name="chat_code_clipboard_label">代码片段</string>
     <string name="chat_code_copied">已复制代码</string>
@@ -32,7 +32,7 @@
     <string name="chat_approval_request">请求批准</string>
     <string name="chat_approval_assisted">帮我批准</string>
     <string name="chat_approval_full_access">完全访问</string>
-    <string name="chat_title">智枢</string>
+    <string name="chat_title">小染</string>
     <string name="chat_default_workspace">默认工作区</string>
     <string name="chat_status">%1$s · %2$s</string>
     <string name="chat_no_model_selected">未选模型</string>
@@ -52,7 +52,7 @@
     <string name="chat_ignore">忽略</string>
     <string name="chat_queue_item">排队 %1$d：</string>
     <string name="chat_input_running">正在执行… 输入可排队</string>
-    <string name="chat_input_hint">输入指令… 支持 @ 挂载专精能力与多模态附件</string>
+    <string name="chat_input_hint">跟小染说点啥… 支持 @ 挂载专精能力与多模态附件</string>
     <string name="chat_context_usage">上下文用量</string>
     <string name="chat_context_title">上下文用量</string>
     <string name="chat_context_full">%1$d%% 已用</string>
@@ -75,7 +75,7 @@
     <string name="chat_conversation_messages">对话消息</string>
     <string name="chat_context_over_budget">已超过预算，下一次请求会自动压缩历史</string>
     <string name="chat_context_estimate">估算值 · 发送前仍由 Harness 最终计算</string>
-    <string name="chat_agent_intro">太墟智枢可以为你编写代码、读写 Linux 工作区文件、执行 Shell 命令或排查系统故障。</string>
+    <string name="chat_agent_intro">小染可以帮你编写代码、读写 Linux 工作区文件、执行 Shell 命令、排查系统故障。有事直接说。</string>
     <string name="chat_onboarding_sandbox">当前仅 Linux 沙箱可用。想让 Agent 操作手机应用与系统设置？到设置页完成 Shizuku 或 Root 授权。</string>
     <string name="chat_onboarding_unlockable">检测到设备支持 Shizuku / Root 特权。切换执行模式即可解锁打开应用、设闹钟、冻结 App 等手机级操作。</string>
     <string name="chat_onboarding_shizuku">Shizuku 已就绪：试试让我打开某个应用、设定闹钟、冻结耗电 App，或用 device_status 查看电量与前台应用。</string>
@@ -106,7 +106,7 @@
     <string name="chat_send">确认发送</string>
     <string name="chat_stop_generation">停止生成</string>
     <string name="chat_cancel">取消</string>
-    <string name="chat_session_manager">智枢会话管理</string>
+    <string name="chat_session_manager">小染会话管理</string>
     <string name="chat_session_count">%1$d 个会话</string>
     <string name="chat_last_session_hint">当前为最后一条会话，删除后将自动重置并开启全新会话</string>
     <string name="chat_state_running">进行中</string>
@@ -139,7 +139,7 @@
     <string name="chat_optional_base_url">Base URL（可选）</string>
     <string name="chat_model_id">模型 ID</string>
     <string name="chat_confirm_add">确认添加</string>
-    <string name="chat_new_agent_session">新建智枢会话</string>
+    <string name="chat_new_agent_session">新建小染会话</string>
     <string name="chat_session_title">会话标题：</string>
     <string name="chat_session_name_hint">输入会话名称…</string>
     <string name="chat_link_workspace">关联工作区工程（Agent 工具将默认在该目录执行）：</string>
@@ -348,7 +348,7 @@
     <!-- 顶栏菜单与权限 Snackbar -->
     <string name="chat_snackbar_grant">去授权</string>
     <string name="chat_snackbar_got_it">知道了</string>
-    <string name="chat_workbench_menu">智枢工作台菜单</string>
+    <string name="chat_workbench_menu">小染工作台菜单</string>
     <string name="chat_menu_branches">分支调度</string>
     <string name="chat_menu_main_branch">主线分支</string>
     <string name="chat_menu_runtime">运行事件与时间线</string>
@@ -454,15 +454,15 @@
     <string name="chat_subagent_role_assistant">助手</string>
     <!-- 轮次锚点栏兜底 -->
 
-    <!-- 智枢 AI 悬浮小窗 -->
+    <!-- 小染 AI 悬浮小窗 -->
     <string name="chat_floating_collapse">小窗收起</string>
-    <string name="chat_floating_window">智枢 AI 悬浮小窗</string>
+    <string name="chat_floating_window">小染 AI 悬浮小窗</string>
     <string name="chat_floating_permission_title">开启悬浮窗权限</string>
-    <string name="chat_floating_permission_message">智枢小窗模式需要在其他应用上层显示，以便您在切换至桌面或其他应用时，仍可随时与 AI 智能体对话、查看实时思考过程与执行结果。</string>
+    <string name="chat_floating_permission_message">小染小窗模式需要在其他应用上层显示，以便您在切换至桌面或其他应用时，仍可随时与 AI 智能体对话、查看实时思考过程与执行结果。</string>
     <string name="chat_floating_permission_grant">前往开启</string>
     <string name="chat_floating_permission_cancel">暂不开启</string>
-    <string name="chat_floating_restore_app">回到智枢</string>
-    <string name="chat_floating_input_hint">向智枢发送指令…</string>
+    <string name="chat_floating_restore_app">回到小染</string>
+    <string name="chat_floating_input_hint">向小染发送指令…</string>
     <string name="chat_floating_send">发送</string>
     <string name="chat_floating_stop">停止</string>
     <string name="chat_floating_close">关闭小窗</string>

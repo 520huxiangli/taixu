@@ -675,7 +675,7 @@ fun TaiXuBrandBadge(size: Dp = 38.dp) {
         contentAlignment = Alignment.Center,
     ) {
         Image(
-            painter = painterResource(R.drawable.components_taixu_logo),
+            painter = painterResource(R.drawable.components_aharou_logo),
             contentDescription = stringResource(R.string.components_taixu_logo),
             modifier = Modifier.size(size * 0.80f),
             contentScale = ContentScale.Fit,

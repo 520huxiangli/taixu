@@ -143,7 +143,7 @@ fun McpSettingsScreen(
                             )
                         }
                         Text(
-                            "MCP 是开放的标准模型上下文协议。开启后，太墟将在 PRoot 沙箱内启动对应的 Stdio 服务或连接本地 SSE 端点，并动态向智枢 Agent 注入专业工具能力。",
+                            "MCP 是开放的标准模型上下文协议。开启后，Aharou 将在 PRoot 沙箱内启动对应的 Stdio 服务或连接本地 SSE 端点，并动态向小染注入专业工具能力。",
                             style = MaterialTheme.typography.bodySmall.copy(lineHeight = 18.sp),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -197,7 +197,7 @@ fun McpSettingsScreen(
                 item(key = "mcp_section_builtin") {
                     McpSectionHeader(
                         title = "系统核心 MCP",
-                        subtitle = "太墟内置系统级能力，默认关闭；开启后常驻本会话，harness 随时可调用（不参与 @ 唤醒）",
+                        subtitle = "Aharou 内置系统级能力，默认关闭；开启后常驻本会话，harness 随时可调用（不参与 @ 唤醒）",
                         count = builtinServers.size,
                     )
                 }
@@ -267,7 +267,7 @@ fun McpSettingsScreen(
             onDismissRequest = { pendingDeleteServerId = null },
             title = { Text("删除 MCP 服务", fontWeight = FontWeight.Bold) },
             text = {
-                Text("确定要删除「${server.name}」吗？删除后将停止向智枢 Agent 注入该服务的工具能力；系统核心 MCP 重新开启即可恢复。")
+                Text("确定要删除「${server.name}」吗？删除后将停止向小染注入该服务的工具能力；系统核心 MCP 重新开启即可恢复。")
             },
             confirmButton = {
                 Button(

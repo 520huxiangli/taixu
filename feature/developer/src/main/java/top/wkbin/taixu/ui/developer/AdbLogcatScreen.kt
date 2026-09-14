@@ -421,7 +421,7 @@ fun AdbLogcatScreen(
                 Text(
                     "• 终端命令：已预置 logcat-grabber <包名>、logcat-tail <包名> 与 logcat-export <包名> <路径>\n" +
                     "• 宿主接口：通过 taixu-host logcat 跨沙箱直接调用\n" +
-                    "• AI 协同：在智枢对话中直接吩咐 Agent“帮我抓取崩溃日志”，将自动调用 host.logcat 工具分析排查",
+                    "• AI 协同：在小染对话中直接吩咐 Agent“帮我抓取崩溃日志”，将自动调用 host.logcat 工具分析排查",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

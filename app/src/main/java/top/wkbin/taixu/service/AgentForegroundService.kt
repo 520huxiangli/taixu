@@ -250,7 +250,7 @@ class AgentForegroundService : Service() {
             status
         }
         return runningNotification(
-            title = "太墟 · $title",
+            title = "Aharou · $title",
             contentText = contentText,
             stopPendingIntent = stopPending,
         )

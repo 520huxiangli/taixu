@@ -1473,7 +1473,7 @@ private fun QuickImportJsonDialog(
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
-                    "粘贴太墟导出的模型配置或 OpenAI 兼容 JSON，将自动解析并填入当前表单：",
+                    "粘贴 Aharou 导出的模型配置或 OpenAI 兼容 JSON，将自动解析并填入当前表单：",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

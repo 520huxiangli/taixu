@@ -184,7 +184,7 @@ fun ToolDetailScreen(
                                     color = MaterialTheme.colorScheme.error,
                                 )
                                 Text(
-                                    text = state.error ?: "可呼叫太墟 Agent 在 PRoot 沙箱内自主排查与自愈",
+                                    text = state.error ?: "可呼叫 Aharou Agent 在 PRoot 沙箱内自主排查与自愈",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 2,

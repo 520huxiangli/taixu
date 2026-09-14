@@ -790,13 +790,13 @@ private fun imageExtension(mimeType: String): String = when (mimeType.lowercase(
     else -> "png"
 }
 
-/** Saves into Pictures/TaiXu so the generated image appears in the system gallery immediately. */
+/** Saves into Pictures/Aharou so the generated image appears in the system gallery immediately. */
 private fun saveImageToGallery(context: Context, mediaModel: Any, mimeType: String): Boolean {
     val resolver = context.contentResolver
     val values = ContentValues().apply {
-        put(MediaStore.Images.Media.DISPLAY_NAME, "taixu-${System.currentTimeMillis()}.${imageExtension(mimeType)}")
+        put(MediaStore.Images.Media.DISPLAY_NAME, "aharou-${System.currentTimeMillis()}.${imageExtension(mimeType)}")
         put(MediaStore.Images.Media.MIME_TYPE, mimeType)
-        put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/TaiXu")
+        put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/Aharou")
         put(MediaStore.Images.Media.IS_PENDING, 1)
     }
     val target = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values) ?: return false

@@ -22,7 +22,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * 太墟 · 应用版本更新管理器 (GitHub Releases API)
+ * Aharou · 应用版本更新管理器 (GitHub Releases API)
  */
 @Singleton
 class AppUpdateManager @Inject constructor(
@@ -31,10 +31,10 @@ class AppUpdateManager @Inject constructor(
 ) {
     private val json = Json { ignoreUnknownKeys = true; isLenient = true }
     companion object {
-        const val GITHUB_REPO = "wkbin/taixu"
-        const val GITHUB_REPO_URL = "https://github.com/wkbin/taixu"
-        const val QQ_GROUP_ID = "964382207"
-        private const val RELEASES_API = "https://api.github.com/repos/wkbin/taixu/releases/latest"
+        const val GITHUB_REPO = "520huxiangli/aharou"
+        const val GITHUB_REPO_URL = "https://github.com/520huxiangli/aharou"
+        const val QQ_GROUP_ID = "807823609"
+        private const val RELEASES_API = "https://api.github.com/repos/520huxiangli/aharou/releases?per_page=1"
     }
 
     /**
@@ -45,7 +45,7 @@ class AppUpdateManager @Inject constructor(
             val request = Request.Builder()
                 .url(RELEASES_API)
                 .header("Accept", "application/vnd.github.v3+json")
-                .header("User-Agent", "TaiXu-App/${currentVersionName}")
+                .header("User-Agent", "Aharou-App/${currentVersionName}")
                 .get()
                 .build()
 
@@ -54,7 +54,7 @@ class AppUpdateManager @Inject constructor(
                     throw IllegalStateException("GitHub 响应错误 HTTP ${response.code}")
                 }
                 val body = response.body.string()
-                val jsonElement = json.parseToJsonElement(body).jsonObject
+                val jsonElement = json.parseToJsonElement(body).jsonArray.firstOrNull()?.jsonObject ?: throw IllegalStateException("仓库暂无 Release")
 
                 val tagName = jsonElement["tag_name"]?.jsonPrimitive?.content.orEmpty()
                 val latestVersion = tagName.removePrefix("v").trim()
@@ -117,7 +117,7 @@ class AppUpdateManager @Inject constructor(
             val body = response.body
             val contentLength = body.contentLength().takeIf { it > 0 }
             val downloadDir = File(context.cacheDir, "updates").apply { mkdirs() }
-            val apkFile = File(downloadDir, "taixu-latest.apk")
+            val apkFile = File(downloadDir, "aharou-latest.apk")
             if (apkFile.exists()) apkFile.delete()
 
             body.byteStream().use { input ->

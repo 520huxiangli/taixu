@@ -711,7 +711,7 @@ export default function App() {
               key={section}
             >
               <Icon name={MOBILE_SECTION_ICON[section]} size={18} />
-              <span>{{ chat: "智枢", workspace: "工作区" }[section]}</span>
+              <span>{{ chat: "小染", workspace: "工作区" }[section]}</span>
             </button>
           ))}
         </nav>

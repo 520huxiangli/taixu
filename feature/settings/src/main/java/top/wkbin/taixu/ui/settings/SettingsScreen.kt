@@ -147,7 +147,7 @@ fun SettingsScreen(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             RuntimeTopBar(
-                title = "太墟 · 乾坤",
+                title = "Aharou · 乾坤",
                 statusText = "系统设置与控制中枢",
             )
         },
@@ -232,8 +232,8 @@ fun SettingsScreen(
                     icon = RuntimeIconName.Community,
                     iconTint = Color(0xFF3B82F6),
                     iconBg = Color(0xFF3B82F6).copy(alpha = 0.12f),
-                    title = "关于、更新与官方社区",
-                    subtitle = "检查新版本 · GitHub 开源仓库 · 官方 QQ 交流群",
+                    title = "关于、更新与社区",
+                    subtitle = "检查新版本 · GitHub 仓库 · QQ 交流群",
                     badge = if (appVersionName == "unknown") "版本号未知 · 稳定版" else "v$appVersionName 稳定版",
                     onClick = onOpenAboutCommunity,
                 )
@@ -381,7 +381,7 @@ fun AgentEcoSettingsScreen(
                     SettingsRow(
                         icon = RuntimeIconName.Chat,
                         title = "快捷短语与常用指令",
-                        subtitle = "自定义智枢空白页快捷开始卡片与高频提示词模板",
+                        subtitle = "自定义小染空白页快捷开始卡片与高频提示词模板",
                         value = "${phrases.count { it.isEnabled }} 条已启用",
                         onClick = onOpenQuickPhrases,
                     )
@@ -563,11 +563,11 @@ fun LinuxEnvironmentSettingsScreen(
                     HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
                     SettingsRow(
                         icon = RuntimeIconName.Globe,
-                        title = "太墟智枢 Web 协作台",
+                        title = "Aharou Web 协作台",
                         subtitle = if (webChatStatus.isRunning) {
                             "运行中 · ${webChatStatus.accessUrl} (PIN: ${webChatStatus.pinCode})"
                         } else {
-                            "在同一 Wi-Fi 下使用电脑浏览器访问太墟 Agent 与工作区"
+                            "在同一 Wi-Fi 下使用电脑浏览器访问 Aharou Agent 与工作区"
                         },
                         value = if (webChatStatus.isRunning) "已开启" else "未开启",
                         onClick = { showWebChatDialog = true },
@@ -1006,7 +1006,7 @@ fun SystemDevSettingsScreen(
 
             item {
                 Text(
-                    text = "太墟自定义迭代与共建",
+                    text = "Aharou 自定义迭代与共建",
                     style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(start = 4.dp, bottom = 4.dp),
@@ -1015,7 +1015,7 @@ fun SystemDevSettingsScreen(
                     SettingsRow(
                         icon = RuntimeIconName.Code,
                         title = "自定义迭代（TaiXuDev）",
-                        subtitle = "在手机沙盒中调用 AI 开发太墟自身并云端构建 APK",
+                        subtitle = "在手机沙盒中调用 AI 开发 Aharou 自身并云端构建 APK",
                         onClick = onOpenCustomIteration,
                     )
                 }
@@ -1114,7 +1114,7 @@ fun AboutCommunityScreen(
                         }
                     },
                     text = {
-                        Text("当前太墟版本 v${state.info.currentVersion} 已是最新稳定版，无需更新。")
+                        Text("当前 Aharou 版本 v${state.info.currentVersion} 已是最新稳定版，无需更新。")
                     },
                     confirmButton = {
                         TextButton(onClick = { viewModel.clearUpdateState() }) {
@@ -1213,29 +1213,22 @@ fun AboutCommunityScreen(
                     SettingsRow(
                         icon = RuntimeIconName.Github,
                         title = "GitHub 开源项目",
-                        subtitle = "https://github.com/wkbin/taixu · 欢迎 Star 支持",
-                        onClick = { openBrowser(context, "https://github.com/wkbin/taixu") },
+                        subtitle = "https://github.com/520huxiangli/aharou · 我们的仓库",
+                        onClick = { openBrowser(context, "https://github.com/520huxiangli/aharou") },
                     )
                     HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
                     SettingsRow(
                         icon = RuntimeIconName.Qq,
-                        title = "官方 QQ 交流群",
-                        subtitle = "群号: 964382207 · 点击一键加群 / 复制群号",
-                        value = "964382207",
-                        onClick = { joinQqGroup(context, "964382207") },
-                    )
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
-                    SettingsRow(
-                        icon = RuntimeIconName.Sponsor,
-                        title = "赞助支持",
-                        subtitle = "赞助太墟 · 助力开源持续开发",
-                        onClick = onOpenSponsor,
+                        title = "Aharou 交流群",
+                        subtitle = "群号: 807823609 · 点击一键加群 / 复制群号",
+                        value = "807823609",
+                        onClick = { joinQqGroup(context, "807823609") },
                     )
                     HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
                     SettingsRow(
                         icon = RuntimeIconName.Info,
-                        title = "关于太墟 · TaiXu",
-                        subtitle = "Android 原生 Linux PRoot 沙箱与 AI 结对中枢",
+                        title = "关于 Aharou",
+                        subtitle = "小染的家 · Android 原生 Linux 沙箱与智能体中枢",
                         onClick = { showAboutDialog = true },
                     )
                 }
@@ -1814,7 +1807,7 @@ private fun BatteryOptimizationDialog(
                     }
                 }
                 Text(
-                    "太墟在 Agent 执行期间会启动前台服务并持有 CPU 进程锁，但系统电池优化仍可能在息屏后" +
+                    "Aharou 在 Agent 执行期间会启动前台服务并持有 CPU 进程锁，但系统电池优化仍可能在息屏后" +
                         "冻结进程，表现为 Agent 推理或命令执行中途停住。建议开启以下两项：",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -2038,24 +2031,24 @@ private fun AboutAppDialog(onDismiss: () -> Unit) {
         title = {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 RuntimeIcon(name = RuntimeIconName.Package, modifier = Modifier.size(24.dp), tint = MaterialTheme.colorScheme.primary)
-                Text("太墟 · TaiXu", fontWeight = FontWeight.Bold)
+                Text("Aharou · 小染", fontWeight = FontWeight.Bold)
             }
         },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("Android 原生 Linux PRoot 沙箱与 AI 结对编程中枢", style = MaterialTheme.typography.bodyMedium)
+                Text("小染的专属智能体家园 · Android 原生 Linux 沙箱", style = MaterialTheme.typography.bodyMedium)
                 Text("版本: v$appVersion (Material 3 Expressive)", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
                 Text("架构: aarch64 · chroot-less user-space virtualization", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("协议: Apache-2.0 License", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("协议: GPL-3.0 License", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Spacer(Modifier.height(4.dp))
                 OutlinedButton(
-                    onClick = { joinQqGroup(context, "964382207") },
+                    onClick = { joinQqGroup(context, "807823609") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(10.dp),
                 ) {
                     RuntimeIcon(RuntimeIconName.Chat, Modifier.size(16.dp), MaterialTheme.colorScheme.primary)
                     Spacer(Modifier.width(8.dp))
-                    Text("加入 QQ 交流群 (964382207)")
+                    Text("加入 Aharou 交流群 (807823609)")
                 }
             }
         },
@@ -2157,7 +2150,7 @@ private fun UpdateInfoDialog(
     )
 }
 
-private fun joinQqGroup(context: Context, groupId: String = "964382207") {
+private fun joinQqGroup(context: Context, groupId: String = "807823609") {
     val uri = Uri.parse("mqqapi://card/show_pslcard?src_type=internal&version=1&uin=$groupId&card_type=group&source=qrcode")
     val intent = Intent(Intent.ACTION_VIEW, uri).apply {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -2167,7 +2160,7 @@ private fun joinQqGroup(context: Context, groupId: String = "964382207") {
     }.onFailure {
         // 剪贴板兜底
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? android.content.ClipboardManager
-        val clip = android.content.ClipData.newPlainText("太墟官方交流群", groupId)
+        val clip = android.content.ClipData.newPlainText("Aharou 交流群", groupId)
         clipboard?.setPrimaryClip(clip)
         android.widget.Toast.makeText(context, "已复制 QQ 群号：$groupId，可打开 QQ 搜索加入", android.widget.Toast.LENGTH_LONG).show()
     }
@@ -2319,7 +2312,7 @@ fun WebChatBridgeDialog(
         title = {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 RuntimeIcon(RuntimeIconName.Globe, Modifier.size(24.dp), tint = MaterialTheme.colorScheme.primary)
-                Text("太墟智枢 Web 协作台")
+                Text("Aharou Web 协作台")
             }
         },
         text = {
@@ -2328,7 +2321,7 @@ fun WebChatBridgeDialog(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Text(
-                    text = "在同一 Wi-Fi / 局域网下，通过电脑浏览器连接太墟智枢，同步处理 Agent 任务、对话与 Linux 工作区文件。",
+                    text = "在同一 Wi-Fi / 局域网下，通过电脑浏览器连接小染，同步处理 Agent 任务、对话与 Linux 工作区文件。",
                     style = MaterialTheme.typography.bodyMedium,
                 )
 
@@ -2375,7 +2368,7 @@ fun WebChatBridgeDialog(
                                     TextButton(
                                         onClick = {
                                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                            clipboard.setPrimaryClip(ClipData.newPlainText("太墟智枢协作地址", status.accessUrl))
+                                            clipboard.setPrimaryClip(ClipData.newPlainText("Aharou 协作地址", status.accessUrl))
                                             Toast.makeText(context, "已复制基础链接", Toast.LENGTH_SHORT).show()
                                         }
                                     ) { Text("复制") }
@@ -2408,7 +2401,7 @@ fun WebChatBridgeDialog(
                             Button(
                                 onClick = {
                                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                    clipboard.setPrimaryClip(ClipData.newPlainText("太墟智枢直连地址", directUrl))
+                                    clipboard.setPrimaryClip(ClipData.newPlainText("Aharou 直连地址", directUrl))
                                     Toast.makeText(context, "已复制免密直达链接，在电脑浏览器打开即可！", Toast.LENGTH_SHORT).show()
                                 },
                                 modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
