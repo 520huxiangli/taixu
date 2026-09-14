@@ -121,6 +121,7 @@ fun HomeScreen(
     onNavigate: (MainDestination) -> Unit,
     onOpenTerminal: () -> Unit,
     onOpenToolCenter: () -> Unit = {},
+    onOpenWorkflows: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
@@ -249,6 +250,14 @@ fun HomeScreen(
                 .padding(bottom = if (isLiquidGlassTheme) 104.dp else innerPadding.calculateBottomPadding() + 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
+            // 0. Aharou 专属快捷入口（四宫格：聊天 / 终端 / 工作区 / 工作流）
+            AharouQuickGrid(
+                onOpenChat = { onNavigate(MainDestination.Agent) },
+                onOpenTerminal = onOpenTerminal,
+                onOpenWorkspace = { onNavigate(MainDestination.Workspace) },
+                onOpenWorkflows = onOpenWorkflows,
+            )
+
             // 1. 运行时引擎主状态卡片 (Status Banner)
             RuntimeEngineStatusCard(
                 state = state,
@@ -1539,3 +1548,116 @@ private fun WebChatDashboardCard(
     }
 }
 
+
+
+/**
+ * Aharou 专属版 · 首页四宫格快捷入口。
+ * 一键直达四大常用能力：聊天（Agent）/ 终端 / 工作区 / 工作流。
+ * 仅在 Aharou 定制版中作为首页首屏第一张卡片展示。
+ */
+@Composable
+private fun AharouQuickGrid(
+    onOpenChat: () -> Unit,
+    onOpenTerminal: () -> Unit,
+    onOpenWorkspace: () -> Unit,
+    onOpenWorkflows: () -> Unit,
+) {
+    RuntimeCard(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(14.dp),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(
+                text = "Aharou 快捷入口",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            Text(
+                text = "专属版",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
+
+        Spacer(Modifier.height(12.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            AharouQuickTile(
+                modifier = Modifier.weight(1f),
+                label = "聊天",
+                icon = RuntimeIconName.Chat,
+                onClick = onOpenChat,
+            )
+            AharouQuickTile(
+                modifier = Modifier.weight(1f),
+                label = "终端",
+                icon = RuntimeIconName.Terminal,
+                onClick = onOpenTerminal,
+            )
+        }
+
+        Spacer(Modifier.height(10.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            AharouQuickTile(
+                modifier = Modifier.weight(1f),
+                label = "工作区",
+                icon = RuntimeIconName.Workspace,
+                onClick = onOpenWorkspace,
+            )
+            AharouQuickTile(
+                modifier = Modifier.weight(1f),
+                label = "工作流",
+                icon = RuntimeIconName.Hub,
+                onClick = onOpenWorkflows,
+            )
+        }
+    }
+}
+
+/** 四宫格中的单个入口方块：图标 + 文案，整块可点。 */
+@Composable
+private fun AharouQuickTile(
+    modifier: Modifier = Modifier,
+    label: String,
+    icon: RuntimeIconName,
+    onClick: () -> Unit,
+) {
+    Surface(
+        modifier = modifier
+            .clip(RoundedCornerShape(14.dp))
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(14.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerHigh,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 14.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            RuntimeIcon(
+                name = icon,
+                modifier = Modifier.size(22.dp),
+                tint = MaterialTheme.colorScheme.primary,
+            )
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
+}

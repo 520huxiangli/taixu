@@ -216,6 +216,8 @@ fun TaiXuNavHost(
                         onNavigate = ::navigateMain,
                         onOpenTerminal = { homeStack.push(HomeDestination, TerminalDestination()) },
                         onOpenToolCenter = { homeStack.push(HomeDestination, ToolCenterDestination) },
+                        // Aharou 专属：工作流为项目级入口，空 projectName 时进入工作流编辑器自身
+                        onOpenWorkflows = { homeStack.push(HomeDestination, WorkflowDestination()) },
                     )
                 }
             }
