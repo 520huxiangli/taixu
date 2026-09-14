@@ -61,6 +61,13 @@ jobs:
             echo "Error: No APK generated!" && exit 1
           fi
 
+      - name: Package Source Snapshot
+        run: |
+          SHORT_SHA=$(git rev-parse --short=8 HEAD)
+          git archive --format=zip --output="output/Aharou-source-${SHORT_SHA}.zip" HEAD
+          sha256sum "output/Aharou-source-${SHORT_SHA}.zip" > "output/Aharou-source-${SHORT_SHA}.zip.sha256"
+          echo "Source snapshot ready: output/Aharou-source-${SHORT_SHA}.zip"
+
       - name: Upload Aharou APK Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -75,12 +82,13 @@ jobs:
           tag_name: "${{ github.event.inputs.release_tag != '' && github.event.inputs.release_tag || 'aharou-latest' }}"
           name: "Aharou 自用版 · 最新构建"
           body: |
-            Aharou 专属版（自用）自动构建产物。
+            Aharou 专属版（自用）自动构建产物 · 每次更新同步附带源码快照。
 
             - 包名：`com.aharou.app`
             - 应用名：Aharou
             - 架构：arm64-v8a
-            - 与 TaiXu 正式版 / TaiXuDev 可共存安装
+            - 可与其它版本共存安装
+            - 附件：APK + APK 校验 + 本版源码 zip
 
             手机直接点击下方 APK 安装即可。
           files: output/*
